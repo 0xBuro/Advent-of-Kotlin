@@ -1,17 +1,30 @@
 fun main() {
-    fun part1(input: List<String>): Int {
-        return input.size
+
+    fun elfNotes(input: String): List<List<Int>> {
+        return input.split("\n\n")
+            .map { singleElf -> singleElf.lines()
+                .map { it.toInt() } }
     }
 
-    fun part2(input: List<String>): Int {
-        return input.size
+    fun part1(input: String): Int {
+        val elvesCarry = elfNotes(input)
+        return elvesCarry.maxOf { it.sum() }
+
     }
 
-    // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
+    fun part2(input: String): Int {
+        val elvesCarry = elfNotes(input)
+        return elvesCarry
+            .map { it.sum() }
+            .sortedDescending()
+            .take(3)
+            .sum()
+    }
 
-    val input = readInput("Day01")
+    //val testInput = readInput("input")
+    //check(part1(testInput) == 24000)
+
+    val input = readInput("input")
     println(part1(input))
     println(part2(input))
 }
