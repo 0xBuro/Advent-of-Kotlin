@@ -1,5 +1,3 @@
-import java.util.TreeSet
-
 fun main() {
 
     fun part1(input: List<String>): Int {
